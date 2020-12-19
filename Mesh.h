@@ -13,6 +13,8 @@ public:
 	~Mesh();
 	void addNode (double x, double y, double z, unsigned int k);
 	const std::vector<Node>& getNodes() const { return m_nodes; };
+
+	void addFiniteElement();
 //	std::vector<FiniteElement>& getFininiteElements();
 //	std::vector<BoundaryFiniteElement>& getBoundaryFiniteElements();
 };

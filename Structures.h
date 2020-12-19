@@ -7,7 +7,7 @@ struct Node
 {
 	unsigned int id;
 	double x, y, z;
-	bool versh;
+	bool isVertex;
 
 	Node() = default;
 	Node(unsigned int, double, double, double, bool);
@@ -17,17 +17,17 @@ struct Node
 
 struct FiniteElement
 {
-	unsigned int id_FinElement;
-	unsigned int id_material;
-	unsigned int id_nodes[4];
+	unsigned int finiteElementId;
+	unsigned int materialId;
+	unsigned int nodesId[4];
 
 	friend std::ostream& operator<<(std::ostream&, const FiniteElement&);
 };
 
 struct BoundaryFiniteElement
 {
-	unsigned int id_BoundFinElement;
-	unsigned int id_granica;
+	unsigned int boundaryFiniteElementId;
+	unsigned int boundaryId;
 
 	friend std::ostream& operator<<(std::ostream&, const BoundaryFiniteElement&);
 };
