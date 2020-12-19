@@ -71,4 +71,22 @@ AneuMeshLoader::loadFiniteElements(std::ifstream &fileIn, Mesh* mesh)
 void
 AneuMeshLoader::loadBoundaryFiniteElements(std::ifstream &fileIn, Mesh* mesh)
 {
+	unsigned int amount;
+	unsigned int size;
+	unsigned int boundaryId;
+	unsigned int nodeIds[3];
+
+	fileIn >> amount;
+	std::cout << "amount3=" << amount << std::endl;
+	fileIn >> size;
+	std::cout << "size3=" << size << std::endl;
+
+	if (size != 3) {
+		throw std::runtime_error("Wrong size of Node!");
+	}
+
+	for (int i=1; i<=amount; i++) {
+		fileIn >> boundaryId >> nodeIds[0] >> nodeIds[1] >> nodeIds[2];
+		std::cout << boundaryId << nodeIds[0] << nodeIds[1] << nodeIds[2] << std::endl;
+	}
 }
