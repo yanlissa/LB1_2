@@ -7,8 +7,8 @@
 class Mesh
 {
 public:
-	Mesh() {};
-	~Mesh() {};
+	Mesh();
+	~Mesh();
 //	std::vector<Node>& getNodes();
 //	std::vector<FiniteElement>& getFininiteElements();
 //	std::vector<BoundaryFiniteElement>& getBoundaryFiniteElements();
