@@ -11,13 +11,17 @@ Mesh::~Mesh ()
 }
 
 void
-Mesh::addNode(double x, double y, double z, unsigned int k)
+Mesh::addNode(std::array<double, 3> coordinates, unsigned int k)
 {
-	Node node1(k,x,y,z,false);
+	Node node1(k, coordinates, false);
 	if (mNodes.find(k) != mNodes.end()) {
 		throw std::runtime_error("Duplicate node id!");
 	}
+	if (mNodesByCoordinates.find(coordinates) != mNodesByCoordinates.end()) {
+		throw std::runtime_error("Duplicate node coordinates!");
+	}
 	mNodes[k] = node1;
+	mNodesByCoordinates[coordinates] = node1;
 }
 
 void

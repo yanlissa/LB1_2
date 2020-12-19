@@ -6,11 +6,11 @@
 struct Node
 {
 	unsigned int id;
-	double x, y, z;
+	std::array<double, 3> coordinates;
 	bool isVertex;
 
 	Node() = default;
-	Node(unsigned int, double, double, double, bool);
+	Node(unsigned int, std::array<double, 3>, bool);
 
 	friend std::ostream& operator<<(std::ostream&, const Node&);
 };

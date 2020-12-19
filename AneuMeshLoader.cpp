@@ -27,7 +27,7 @@ AneuMeshLoader::loadNodes(std::ifstream &fileIn, Mesh* mesh)
 {
 	unsigned int amount;
 	unsigned int size;
-	double x, y, z;
+	std::array<double, 3> coordinates;
 
 	fileIn >> amount;
 	std::cout << "amount1=" << amount << std::endl;
@@ -39,8 +39,10 @@ AneuMeshLoader::loadNodes(std::ifstream &fileIn, Mesh* mesh)
 	}
 
 	for (int i=1; i<=amount; i++) {
-		fileIn >> x >> y >> z;
-		mesh->addNode(x, y, z, i);
+		for (int j=0; j<3; j++) {
+			fileIn >> coordinates[j];
+		}
+		mesh->addNode(coordinates, i);
 	}
 
 }

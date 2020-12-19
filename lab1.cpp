@@ -1,5 +1,6 @@
 #include <string.h>
 #include <iostream>
+#include "CompareCoordinates.h"
 
 #include "AneuMeshLoader.h"
 
