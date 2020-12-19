@@ -21,7 +21,7 @@ int main (int argc, char *argv[]) {
 	}
 	std::cout << "List of BFE" << std::endl;
 	for (auto it: mesh.getBoundaryFiniteElements()) {
-		std::cout << it << std::endl;
+		std::cout << it.second << std::endl;
 	}
 	return 0;
 }

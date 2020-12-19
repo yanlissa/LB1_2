@@ -43,11 +43,14 @@ Mesh::addFiniteElement(unsigned int k, unsigned int materialId, unsigned int* no
 void
 Mesh::addBoundaryFiniteElement(unsigned int boundaryFiniteElementId, unsigned int boundaryId, unsigned int* nodeIds)
 {
+	if (mBFEs.find(boundaryFiniteElementId) != mBFEs.end()) {
+		throw std::runtime_error("Duplicate boundary finite element id!");
+	}
 	BoundaryFiniteElement bfe1;
 	bfe1.boundaryFiniteElementId = boundaryFiniteElementId;
 	bfe1.boundaryId = boundaryId;
 	bfe1.nodeIds[0] = nodeIds[0];
 	bfe1.nodeIds[1] = nodeIds[1];
 	bfe1.nodeIds[2] = nodeIds[2];
-	mBFEs.push_back(bfe1);
+	mBFEs[boundaryFiniteElementId] = bfe1;
 }
