@@ -1,16 +1,16 @@
 #pragma once
 
+#include <functional>
 #include <map>
 #include <vector>
 
-#include "CompareCoordinates.h"
 #include "Structures.h"
 
 class Mesh
 {
 private:
 	std::map<unsigned int, Node> mNodes;
-	std::map<std::array<double, 3>, Node, CompareCoordinates> mNodesByCoordinates;
+	std::map<std::array<double, 3>, Node> mNodesByCoordinates;
 	std::vector<FiniteElement> mFEs;
 	std::vector<BoundaryFiniteElement> mBFEs;
 public:
