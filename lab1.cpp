@@ -13,7 +13,7 @@ int main (int argc, char *argv[]) {
 	Mesh mesh = loader.loadMesh(argv[1]);
 	std::cout << "List of nodes" << std::endl;
 	for (auto it: mesh.getNodes()) {
-		std::cout << it << std::endl;
+		std::cout << it.second << std::endl;
 	}
 	std::cout << "List of FE" << std::endl;
 	for (auto it: mesh.getFininiteElements()) {

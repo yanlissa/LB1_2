@@ -14,7 +14,10 @@ void
 Mesh::addNode(double x, double y, double z, unsigned int k)
 {
 	Node node1(k,x,y,z,false);
-	mNodes.push_back(node1);
+	if (mNodes.find(k) != mNodes.end()) {
+		throw std::runtime_error("Duplicate node id!");
+	}
+	mNodes[k] = node1;
 }
 
 void
