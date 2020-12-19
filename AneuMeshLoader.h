@@ -7,5 +7,5 @@ class AneuMeshLoader : MeshLoader
 public:
 	AneuMeshLoader () {};
 	~AneuMeshLoader () {};
-	virtual Mesh& LoadMesh(const std::string& filename) override;
+	virtual Mesh& loadMesh(const std::string& filename) override;
 };

@@ -5,10 +5,11 @@
 #include "AneuMeshLoader.h"
 
 Mesh&
-AneuMeshLoader::LoadMesh(const std::string& filename)
+AneuMeshLoader::loadMesh(const std::string& filename)
 {
 	std::ifstream fileIn;
 	fileIn.open(filename);
+
 
 	if (!fileIn.is_open()) {
 		throw std::runtime_error("File not open!");
@@ -58,6 +59,10 @@ AneuMeshLoader::LoadMesh(const std::string& filename)
 		fileIn >> materialId >> nodeIds[0] >> nodeIds[1] >> nodeIds[2] >> nodeIds[3];
 		mesh->addFiniteElement(i, materialId, nodeIds);
 	}
+
+	unsigned int amount3;
+	unsigned int size3;
+
 
 	fileIn.close();
 	return *mesh;
