@@ -7,10 +7,10 @@
 Mesh&
 AneuMeshLoader::LoadMesh(const std::string& filename)
 {
-	std::ifstream filein;
-	filein.open(filename);
+	std::ifstream fileIn;
+	fileIn.open(filename);
 
-	if (!filein.is_open()) {
+	if (!fileIn.is_open()) {
 		throw std::runtime_error("File not open!");
 	}
 
@@ -18,9 +18,9 @@ AneuMeshLoader::LoadMesh(const std::string& filename)
 	unsigned int size1;
 	double x, y, z;
 
-	filein >> amount1;
+	fileIn >> amount1;
 	std::cout << "amount1=" << amount1 << std::endl;
-	filein >> size1;
+	fileIn >> size1;
 	std::cout << "size1=" << size1 << std::endl;
 //	Nodes.reserve(amount);
 
@@ -36,18 +36,18 @@ AneuMeshLoader::LoadMesh(const std::string& filename)
 
 	Mesh *mesh = new Mesh();
 	for (int i=1; i<=amount1; i++) {
-		filein >> x >> y >> z;
+		fileIn >> x >> y >> z;
 		mesh->addNode(x, y, z, i);
 	}
 
 	unsigned int amount2;
 	unsigned int size2;
-	unsigned int material_id;
-	unsigned int node_ids[4];
+	unsigned int materialId;
+	unsigned int nodeIds[4];
 
-	filein >> amount2;
+	fileIn >> amount2;
 	std::cout << "amount2=" << amount2 << std::endl;
-	filein >> size2;
+	fileIn >> size2;
 	std::cout << "size2=" << size2 << std::endl;
 
 	if (size2 != 4) {
@@ -55,12 +55,11 @@ AneuMeshLoader::LoadMesh(const std::string& filename)
 	}
 
 	for (int i=1; i<=amount2; i++) {
-		filein >> material_id >> node_ids[0] >> node_ids[1] >> node_ids[2] >> node_ids[3];
-		std::cout << material_id << "  " << node_ids[0] << "  " << node_ids[1] << "  " << node_ids[2] << "  " 
-			<< node_ids[3] << std::endl;
+		fileIn >> materialId >> nodeIds[0] >> nodeIds[1] >> nodeIds[2] >> nodeIds[3];
+		mesh->addFiniteElement(i, materialId, nodeIds);
 	}
 
-	filein.close();
+	fileIn.close();
 	return *mesh;
 }
 

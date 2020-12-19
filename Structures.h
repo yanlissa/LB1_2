@@ -19,7 +19,7 @@ struct FiniteElement
 {
 	unsigned int finiteElementId;
 	unsigned int materialId;
-	unsigned int nodesId[4];
+	unsigned int nodeIds[4];
 
 	friend std::ostream& operator<<(std::ostream&, const FiniteElement&);
 };
