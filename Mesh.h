@@ -11,7 +11,7 @@ class Mesh
 private:
 	std::map<unsigned int, Node> mNodes;
 	std::map<std::array<double, 3>, Node> mNodesByCoordinates;
-	std::vector<FiniteElement> mFEs;
+	std::map<unsigned int, FiniteElement> mFEs;
 	std::vector<BoundaryFiniteElement> mBFEs;
 public:
 	Mesh();
@@ -19,7 +19,7 @@ public:
 	void addNode (std::array<double, 3> coordinates, unsigned int k);
 	const std::map<unsigned int, Node>& getNodes() const { return mNodes; };
 	void addFiniteElement (unsigned int finiteElementId, unsigned int materialId, unsigned int* nodeIds);
-	const std::vector<FiniteElement>& getFininiteElements() const { return mFEs; };
+	const std::map<unsigned int, FiniteElement>& getFininiteElements() const { return mFEs; };
 	void addBoundaryFiniteElement (unsigned int boundaryFiniteElementId, unsigned int boundaryId, unsigned int* nodeIds);
 	const std::vector<BoundaryFiniteElement>& getBoundaryFiniteElements() const { return mBFEs; };
 };

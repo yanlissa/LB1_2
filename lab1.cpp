@@ -17,7 +17,7 @@ int main (int argc, char *argv[]) {
 	}
 	std::cout << "List of FE" << std::endl;
 	for (auto it: mesh.getFininiteElements()) {
-		std::cout << it << std::endl;
+		std::cout << it.second << std::endl;
 	}
 	std::cout << "List of BFE" << std::endl;
 	for (auto it: mesh.getBoundaryFiniteElements()) {
