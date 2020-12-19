@@ -31,10 +31,10 @@ AneuMeshLoader::LoadMesh(const std::string& filename)
 //	}
 
 	Mesh *mesh = new Mesh();
-	for (int i=0; i<amount; i++)
+	for (int i=1; i<=amount; i++)
 	{
 		filein >> x >> y >> z;
-		mesh->addNode(x, y, z);
+		mesh->addNode(x, y, z, i);
 	}
 	filein.close();
 	return *mesh;

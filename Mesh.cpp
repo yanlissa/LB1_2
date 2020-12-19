@@ -11,7 +11,8 @@ Mesh::~Mesh ()
 }
 
 void
-Mesh::addNode(double x, double y, double z)
+Mesh::addNode(double x, double y, double z, unsigned int k)
 {
-	std::cout << "x=" << x << "   y=" << y << "   z=" << z << std::endl;
+	Node node1(k,x,y,z,false);
+	m_nodes.push_back(node1);
 }

@@ -11,5 +11,9 @@ int main (int argc, char *argv[]) {
 		return 0;
 	}
 	Mesh mesh = loader.LoadMesh(argv[1]);
+	std::cout << "List of nodes" << std::endl;
+	for (auto it: mesh.getNodes()) {
+		std::cout << it << std::endl;
+	}
 	return 0;
 }
