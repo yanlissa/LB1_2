@@ -28,6 +28,7 @@ struct BoundaryFiniteElement
 {
 	unsigned int boundaryFiniteElementId;
 	unsigned int boundaryId;
+	unsigned int nodeIds[3];
 
 	friend std::ostream& operator<<(std::ostream&, const BoundaryFiniteElement&);
 };

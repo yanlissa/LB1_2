@@ -28,5 +28,16 @@ Mesh::addFiniteElement(unsigned int k, unsigned int materialId, unsigned int* no
 	fe1.nodeIds[2] = nodeIds[2];
 	fe1.nodeIds[3] = nodeIds[3];
 	mFEs.push_back(fe1);
-	//std::cout << mFEs.length << std::endl;
+}
+
+void
+Mesh::addBoundaryFiniteElement(unsigned int boundaryFiniteElementId, unsigned int boundaryId, unsigned int* nodeIds)
+{
+	BoundaryFiniteElement bfe1;
+	bfe1.boundaryFiniteElementId = boundaryFiniteElementId;
+	bfe1.boundaryId = boundaryId;
+	bfe1.nodeIds[0] = nodeIds[0];
+	bfe1.nodeIds[1] = nodeIds[1];
+	bfe1.nodeIds[2] = nodeIds[2];
+	mBFEs.push_back(bfe1);
 }

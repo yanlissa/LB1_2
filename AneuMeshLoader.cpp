@@ -87,6 +87,6 @@ AneuMeshLoader::loadBoundaryFiniteElements(std::ifstream &fileIn, Mesh* mesh)
 
 	for (int i=1; i<=amount; i++) {
 		fileIn >> boundaryId >> nodeIds[0] >> nodeIds[1] >> nodeIds[2];
-		std::cout << boundaryId << nodeIds[0] << nodeIds[1] << nodeIds[2] << std::endl;
+		mesh->addBoundaryFiniteElement(i, boundaryId, nodeIds);
 	}
 }

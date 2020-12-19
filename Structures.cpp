@@ -27,6 +27,7 @@ std::ostream& operator<<(std::ostream& out_stream, const FiniteElement& _fe)
 
 std::ostream& operator<<(std::ostream& out_stream, const BoundaryFiniteElement& _bfe)
 {
-	out_stream << std::setw(8) << _bfe.boundaryFiniteElementId << std::setw(8) << _bfe.boundaryId;
+	out_stream << std::setw(3) << _bfe.boundaryFiniteElementId << std::setw(5) << _bfe.boundaryId << std::setw(5) << _bfe.nodeIds[0]
+		<< std::setw(5) << _bfe.nodeIds[1] << std::setw(5) << _bfe.nodeIds[2] << std::setw(5) << _bfe.nodeIds[3];
 	return out_stream;
 }

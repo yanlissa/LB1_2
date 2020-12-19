@@ -15,8 +15,12 @@ int main (int argc, char *argv[]) {
 	for (auto it: mesh.getNodes()) {
 		std::cout << it << std::endl;
 	}
-	std::cout << "List of FE" <<std::endl;
+	std::cout << "List of FE" << std::endl;
 	for (auto it: mesh.getFininiteElements()) {
+		std::cout << it << std::endl;
+	}
+	std::cout << "List of BFE" << std::endl;
+	for (auto it: mesh.getBoundaryFiniteElements()) {
 		std::cout << it << std::endl;
 	}
 	return 0;
