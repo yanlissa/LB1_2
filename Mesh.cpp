@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 
 #include "Mesh.h"
@@ -21,7 +22,7 @@ Mesh::addNode(std::array<double, 3> coordinates, unsigned int k)
 		throw std::runtime_error("Duplicate node coordinates!");
 	}
 	mNodes[k] = node1;
-	mNodesByCoordinates[coordinates] = &node1;
+	mNodesByCoordinates[coordinates] = &mNodes[k];
 }
 
 void
@@ -30,6 +31,7 @@ Mesh::addFiniteElement(unsigned int k, unsigned int materialId, std::array<unsig
 	if (mFEs.find(k) != mFEs.end()) {
 		throw std::runtime_error("Duplicate finite element id!");
 	}
+	std::sort(nodeIds.begin(), nodeIds.end());
 	if (mFEsByNodeIds.find(nodeIds) != mFEsByNodeIds.end()) {
 		throw std::runtime_error("Duplicate finite element by node ids!");
 	}
@@ -38,7 +40,21 @@ Mesh::addFiniteElement(unsigned int k, unsigned int materialId, std::array<unsig
 	fe1.materialId = materialId;
 	fe1.nodeIds = nodeIds;
 	mFEs[k] = fe1;
-	mFEsByNodeIds[nodeIds] = &fe1;
+	mFEsByNodeIds[nodeIds] = &mFEs[k];
+	for (int i = 3; i >= 0; i--) {
+		std::array<unsigned int, 3> nodeIds3;
+		int l = 0;
+		for (int j = 0; j < 4; j++) {
+			if (i != j) {
+				nodeIds3[l] = nodeIds[j];
+				l++;
+			}
+		}
+		if (mFEsBy3Nodes.find(nodeIds3) == mFEsBy3Nodes.end()) {
+			mFEsBy3Nodes[nodeIds3] = *(new std::set<FiniteElement *>);
+		}
+		mFEsBy3Nodes[nodeIds3].insert(&mFEs[k]);
+	}
 }
 
 void
@@ -55,5 +71,14 @@ Mesh::addBoundaryFiniteElement(unsigned int boundaryFiniteElementId, unsigned in
 	bfe1.boundaryId = boundaryId;
 	bfe1.nodeIds = nodeIds;
 	mBFEs[boundaryFiniteElementId] = bfe1;
-	mBFEsByNodeIds[nodeIds] = &bfe1;
+	mBFEsByNodeIds[nodeIds] = &mBFEs[boundaryFiniteElementId];
+}
+
+std::set<FiniteElement *>&
+Mesh::findFEby3NodeIds(std::array<unsigned int, 3> nodeIds)
+{
+	if (mFEsBy3Nodes.find(nodeIds) == mFEsBy3Nodes.end()) {
+		return *(new std::set<FiniteElement *>);
+	}
+	return mFEsBy3Nodes[nodeIds];
 }

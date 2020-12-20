@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <map>
+#include <set>
 #include <vector>
 
 #include "Structures.h"
@@ -15,6 +16,7 @@ private:
 	std::map<std::array<unsigned int, 4>, FiniteElement *> mFEsByNodeIds;
 	std::map<unsigned int, BoundaryFiniteElement> mBFEs;
 	std::map<std::array<unsigned int, 3>, BoundaryFiniteElement *> mBFEsByNodeIds;
+	std::map<std::array<unsigned int, 3>, std::set<FiniteElement *>> mFEsBy3Nodes;
 public:
 	Mesh();
 	~Mesh();
@@ -24,5 +26,6 @@ public:
 	const std::map<unsigned int, FiniteElement>& getFininiteElements() const { return mFEs; };
 	void addBoundaryFiniteElement (unsigned int boundaryFiniteElementId, unsigned int boundaryId, std::array<unsigned int, 3> nodeIds);
 	const std::map<unsigned int, BoundaryFiniteElement>& getBoundaryFiniteElements() const { return mBFEs; };
+	std::set<FiniteElement *>& findFEby3NodeIds(std::array<unsigned int, 3> nodeIds);
 };
 
