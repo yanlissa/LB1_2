@@ -28,7 +28,7 @@ struct BoundaryFiniteElement
 {
 	unsigned int boundaryFiniteElementId;
 	unsigned int boundaryId;
-	unsigned int nodeIds[3];
+	std::array<unsigned int, 3> nodeIds;
 
 	friend std::ostream& operator<<(std::ostream&, const BoundaryFiniteElement&);
 };

@@ -76,7 +76,7 @@ AneuMeshLoader::loadBoundaryFiniteElements(std::ifstream &fileIn, Mesh* mesh)
 	unsigned int amount;
 	unsigned int size;
 	unsigned int boundaryId;
-	unsigned int nodeIds[3];
+	std::array<unsigned int, 3> nodeIds;
 
 	fileIn >> amount;
 	std::cout << "amount3=" << amount << std::endl;

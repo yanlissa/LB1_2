@@ -21,7 +21,7 @@ Mesh::addNode(std::array<double, 3> coordinates, unsigned int k)
 		throw std::runtime_error("Duplicate node coordinates!");
 	}
 	mNodes[k] = node1;
-	mNodesByCoordinates[coordinates] = node1;
+	mNodesByCoordinates[coordinates] = &node1;
 }
 
 void
@@ -38,19 +38,22 @@ Mesh::addFiniteElement(unsigned int k, unsigned int materialId, std::array<unsig
 	fe1.materialId = materialId;
 	fe1.nodeIds = nodeIds;
 	mFEs[k] = fe1;
+	mFEsByNodeIds[nodeIds] = &fe1;
 }
 
 void
-Mesh::addBoundaryFiniteElement(unsigned int boundaryFiniteElementId, unsigned int boundaryId, unsigned int* nodeIds)
+Mesh::addBoundaryFiniteElement(unsigned int boundaryFiniteElementId, unsigned int boundaryId, std::array<unsigned int, 3> nodeIds)
 {
 	if (mBFEs.find(boundaryFiniteElementId) != mBFEs.end()) {
 		throw std::runtime_error("Duplicate boundary finite element id!");
 	}
+	if (mBFEsByNodeIds.find(nodeIds) != mBFEsByNodeIds.end()) {
+		throw std::runtime_error("Duplicate boundary finite element by node ids!");
+	}
 	BoundaryFiniteElement bfe1;
 	bfe1.boundaryFiniteElementId = boundaryFiniteElementId;
 	bfe1.boundaryId = boundaryId;
-	bfe1.nodeIds[0] = nodeIds[0];
-	bfe1.nodeIds[1] = nodeIds[1];
-	bfe1.nodeIds[2] = nodeIds[2];
+	bfe1.nodeIds = nodeIds;
 	mBFEs[boundaryFiniteElementId] = bfe1;
+	mBFEsByNodeIds[nodeIds] = &bfe1;
 }
