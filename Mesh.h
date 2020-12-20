@@ -19,6 +19,7 @@ private:
 	std::map<std::array<unsigned int, 3>, std::set<FiniteElement *>> mFEsBy3Nodes;
 	std::map<std::array<unsigned int, 2>, std::set<FiniteElement *>> mFEsBy2Nodes;
 	std::map<unsigned int, std::set<Node *>> mNodesByBoundaryId;
+	std::map<unsigned int, std::set<FiniteElement *>> mFEsByMaterialId;
 public:
 	Mesh();
 	~Mesh();
@@ -31,5 +32,6 @@ public:
 	std::set<FiniteElement *>& findFEby3NodeIds(std::array<unsigned int, 3> nodeIds);
 	std::set<FiniteElement *>& findFEby2NodeIds(std::array<unsigned int, 2> nodeIds);
 	std::set<Node *>& findNodesByBoundaryId(unsigned int boundaryId);
+	std::set<FiniteElement *>& findFEsByMaterialId(unsigned int materialId);
 };
 

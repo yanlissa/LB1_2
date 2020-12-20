@@ -66,6 +66,10 @@ Mesh::addFiniteElement(unsigned int k, unsigned int materialId, std::array<unsig
 			mFEsBy2Nodes[nodeIds2].insert(&mFEs[k]);
 		}
 	}
+	if (mFEsByMaterialId.find(materialId) == mFEsByMaterialId.end()) {
+		mFEsByMaterialId[materialId] = *(new std::set<FiniteElement *>);
+	}
+	mFEsByMaterialId[materialId].insert(&mFEs[k]);
 }
 
 void
@@ -116,4 +120,13 @@ Mesh::findNodesByBoundaryId(unsigned int boundaryId)
 		return *(new std::set<Node *>);
 	}
 	return mNodesByBoundaryId[boundaryId];
+}
+
+std::set<FiniteElement *>&
+Mesh::findFEsByMaterialId(unsigned int materialId)
+{
+	if (mFEsByMaterialId.find(materialId) == mFEsByMaterialId.end()) {
+		return *(new std::set<FiniteElement *>);
+	}
+	return mFEsByMaterialId[materialId];
 }

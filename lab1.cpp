@@ -37,5 +37,9 @@ int main (int argc, char *argv[]) {
 	for (auto it: mesh.findNodesByBoundaryId(1)) {
 		std::cout << *it << std::endl;
 	}
+	std::cout << "List FE by material 1" << std::endl;
+	for (auto it: mesh.findFEsByMaterialId(1)) {
+		std::cout << *it << std::endl;
+	}
 	return 0;
 }
