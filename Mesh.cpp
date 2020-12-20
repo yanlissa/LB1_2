@@ -25,18 +25,18 @@ Mesh::addNode(std::array<double, 3> coordinates, unsigned int k)
 }
 
 void
-Mesh::addFiniteElement(unsigned int k, unsigned int materialId, unsigned int* nodeIds)
+Mesh::addFiniteElement(unsigned int k, unsigned int materialId, std::array<unsigned int, 4> nodeIds)
 {
 	if (mFEs.find(k) != mFEs.end()) {
 		throw std::runtime_error("Duplicate finite element id!");
 	}
+	if (mFEsByNodeIds.find(nodeIds) != mFEsByNodeIds.end()) {
+		throw std::runtime_error("Duplicate finite element by node ids!");
+	}
 	FiniteElement fe1;
 	fe1.finiteElementId = k;
 	fe1.materialId = materialId;
-	fe1.nodeIds[0] = nodeIds[0];
-	fe1.nodeIds[1] = nodeIds[1];
-	fe1.nodeIds[2] = nodeIds[2];
-	fe1.nodeIds[3] = nodeIds[3];
+	fe1.nodeIds = nodeIds;
 	mFEs[k] = fe1;
 }
 

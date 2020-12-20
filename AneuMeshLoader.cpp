@@ -53,7 +53,7 @@ AneuMeshLoader::loadFiniteElements(std::ifstream &fileIn, Mesh* mesh)
 	unsigned int amount;
 	unsigned int size;
 	unsigned int materialId;
-	unsigned int nodeIds[4];
+	std::array<unsigned int, 4> nodeIds;
 
 	fileIn >> amount;
 	std::cout << "amount2=" << amount << std::endl;
