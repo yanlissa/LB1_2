@@ -21,6 +21,7 @@ private:
 	std::map<unsigned int, std::set<Node *>> mNodesByBoundaryId;
 	std::map<unsigned int, std::set<FiniteElement *>> mFEsByMaterialId;
 	std::map<unsigned int, std::set<Node *>> mNodesByEdge;
+	std::map<unsigned int, std::set<BoundaryFiniteElement *>> mBFEsByBoundaryId;
 public:
 	Mesh();
 	~Mesh();
@@ -35,5 +36,6 @@ public:
 	std::set<Node *>& findNodesByBoundaryId(unsigned int boundaryId);
 	std::set<FiniteElement *>& findFEsByMaterialId(unsigned int materialId);
 	const std::map<unsigned int, std::set<Node *>>& findNodesByEdge() const { return mNodesByEdge; };
+	std::set<BoundaryFiniteElement *>& findBFEsByBoundaryId(unsigned int boundaryId);
 };
 

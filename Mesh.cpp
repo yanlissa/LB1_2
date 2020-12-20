@@ -101,6 +101,10 @@ Mesh::addBoundaryFiniteElement(unsigned int boundaryFiniteElementId, unsigned in
 	for (int i = 0; i < 3; i++) {
 		mNodesByBoundaryId[boundaryId].insert(&mNodes[nodeIds[i]]);
 	}
+	if (mBFEsByBoundaryId.find(boundaryId) == mBFEsByBoundaryId.end()) {
+		mBFEsByBoundaryId[boundaryId] = *(new std::set<BoundaryFiniteElement *>);
+	}
+	mBFEsByBoundaryId[boundaryId].insert(&mBFEs[boundaryFiniteElementId]);
 }
 
 std::set<FiniteElement *>&
@@ -137,4 +141,14 @@ Mesh::findFEsByMaterialId(unsigned int materialId)
 		return *(new std::set<FiniteElement *>);
 	}
 	return mFEsByMaterialId[materialId];
+}
+
+std::set<BoundaryFiniteElement *>&
+Mesh::findBFEsByBoundaryId(unsigned int boundaryId)
+{
+	std::cout << "boundary: " << boundaryId << std::endl;
+	if (mBFEsByBoundaryId.find(boundaryId) == mBFEsByBoundaryId.end()) {
+		return *(new std::set<BoundaryFiniteElement *>);
+	}
+	return mBFEsByBoundaryId[boundaryId];
 }

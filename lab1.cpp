@@ -37,12 +37,16 @@ int main (int argc, char *argv[]) {
 	for (auto it: mesh.findNodesByBoundaryId(1)) {
 		std::cout << *it << std::endl;
 	}
-	std::cout << "List FE by material 1" << std::endl;
+	std::cout << "List of FE by material 1" << std::endl;
 	for (auto it: mesh.findFEsByMaterialId(1)) {
 		std::cout << *it << std::endl;
 	}
-	std::cout << "List nodes by edges from node 1" << std::endl;
+	std::cout << "List of nodes by edges from node 1" << std::endl;
 	for (auto it: (mesh.findNodesByEdge().at(1))) {
+		std::cout << *it << std::endl;
+	}
+	std::cout << "List of BFE by boundary 4" << std::endl;
+	for (auto it: mesh.findBFEsByBoundaryId(4)) {
 		std::cout << *it << std::endl;
 	}
 	return 0;
