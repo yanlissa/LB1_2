@@ -23,9 +23,14 @@ int main (int argc, char *argv[]) {
 	for (auto it: mesh.getBoundaryFiniteElements()) {
 		std::cout << it.second << std::endl;
 	}
-	std::array<unsigned int, 3> nodeIds = {1, 2, 7};
+	std::array<unsigned int, 3> nodeIds3 = {1, 2, 7};
 	std::cout << "List of FE with {1, 2, 7}" << std::endl;
-	for (auto it: mesh.findFEby3NodeIds(nodeIds)) {
+	for (auto it: mesh.findFEby3NodeIds(nodeIds3)) {
+		std::cout << *it << std::endl;
+	}
+	std::array<unsigned int, 2> nodeIds2 = {2, 8};
+	std::cout << "List of FE with {2, 8}" << std::endl;
+	for (auto it: mesh.findFEby2NodeIds(nodeIds2)) {
 		std::cout << *it << std::endl;
 	}
 	return 0;

@@ -55,6 +55,17 @@ Mesh::addFiniteElement(unsigned int k, unsigned int materialId, std::array<unsig
 		}
 		mFEsBy3Nodes[nodeIds3].insert(&mFEs[k]);
 	}
+	for (int i = 0; i < 3; i++) {
+		for (int j = i + 1; j < 4; j++) {
+			std::array<unsigned int, 2> nodeIds2;
+			nodeIds2[0] = nodeIds[i];
+			nodeIds2[1] = nodeIds[j];
+			if (mFEsBy2Nodes.find(nodeIds2) == mFEsBy2Nodes.end()) {
+				mFEsBy2Nodes[nodeIds2] = *(new std::set<FiniteElement *>);
+			}
+			mFEsBy2Nodes[nodeIds2].insert(&mFEs[k]);
+		}
+	}
 }
 
 void
@@ -81,4 +92,13 @@ Mesh::findFEby3NodeIds(std::array<unsigned int, 3> nodeIds)
 		return *(new std::set<FiniteElement *>);
 	}
 	return mFEsBy3Nodes[nodeIds];
+}
+
+std::set<FiniteElement *>&
+Mesh::findFEby2NodeIds(std::array<unsigned int, 2> nodeIds)
+{
+	if (mFEsBy2Nodes.find(nodeIds) == mFEsBy2Nodes.end()) {
+		return *(new std::set<FiniteElement *>);
+	}
+	return mFEsBy2Nodes[nodeIds];
 }

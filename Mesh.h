@@ -17,6 +17,7 @@ private:
 	std::map<unsigned int, BoundaryFiniteElement> mBFEs;
 	std::map<std::array<unsigned int, 3>, BoundaryFiniteElement *> mBFEsByNodeIds;
 	std::map<std::array<unsigned int, 3>, std::set<FiniteElement *>> mFEsBy3Nodes;
+	std::map<std::array<unsigned int, 2>, std::set<FiniteElement *>> mFEsBy2Nodes;
 public:
 	Mesh();
 	~Mesh();
@@ -27,5 +28,6 @@ public:
 	void addBoundaryFiniteElement (unsigned int boundaryFiniteElementId, unsigned int boundaryId, std::array<unsigned int, 3> nodeIds);
 	const std::map<unsigned int, BoundaryFiniteElement>& getBoundaryFiniteElements() const { return mBFEs; };
 	std::set<FiniteElement *>& findFEby3NodeIds(std::array<unsigned int, 3> nodeIds);
+	std::set<FiniteElement *>& findFEby2NodeIds(std::array<unsigned int, 2> nodeIds);
 };
 
