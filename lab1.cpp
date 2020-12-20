@@ -33,5 +33,9 @@ int main (int argc, char *argv[]) {
 	for (auto it: mesh.findFEby2NodeIds(nodeIds2)) {
 		std::cout << *it << std::endl;
 	}
+	std::cout << "Nodes in boundary 1" << std::endl;
+	for (auto it: mesh.findNodesByBoundaryId(1)) {
+		std::cout << *it << std::endl;
+	}
 	return 0;
 }
